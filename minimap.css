@@ -1,0 +1,167 @@
+/* Live Minimap Styles */
+.live-minimap-container {
+  position: fixed;
+  width: 200px;
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid #444;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 999999;
+  backdrop-filter: blur(8px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+}
+
+.minimap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background: rgba(50, 50, 50, 0.8);
+  border-bottom: 1px solid #555;
+  cursor: move;
+  user-select: none;
+}
+
+.minimap-drag-handle {
+  color: #aaa;
+  font-size: 12px;
+  cursor: move;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.minimap-drag-handle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.minimap-canvas {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  background: #fff;
+}
+
+.minimap-viewport {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(74, 144, 226, 0.2);
+  border: 1px solid #4a90e2;
+  border-left: none;
+  border-right: none;
+  pointer-events: none;
+  min-height: 8px;
+  box-sizing: border-box;
+  top: 30px; /* Account for header */
+}
+
+.minimap-toggle {
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.minimap-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Hide minimap on very small screens */
+@media (max-width: 768px) {
+  .live-minimap-container {
+    width: 150px;
+    right: 10px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .live-minimap-container {
+    display: none;
+  }
+}
+
+/* Ensure minimap doesn't interfere with page content */
+body {
+  margin-right: 0 !important;
+}
+
+/* Style for highlighted search results in minimap */
+.minimap-highlight {
+  background: #ffff00 !important;
+  border: 1px solid #ff8800 !important;
+}
+
+/* Animation for smooth transitions */
+.live-minimap-container {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.live-minimap-container:hover {
+  opacity: 1;
+}
+
+/* Scrollbar styling for better visual consistency */
+.live-minimap-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom styles for different content types in minimap */
+.minimap-heading {
+  background: #4a90e2 !important;
+}
+
+.minimap-paragraph {
+  background: #d0d0d0 !important;
+}
+
+.minimap-code {
+  background: #2d3748 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+/* Focus ring for accessibility */
+.minimap-canvas:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .live-minimap-container {
+    background: #000;
+    border-color: #fff;
+  }
+  
+  .minimap-viewport {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .live-minimap-container {
+    transition: none;
+  }
+  
+  .minimap-toggle {
+    transition: none;
+  }
+}
